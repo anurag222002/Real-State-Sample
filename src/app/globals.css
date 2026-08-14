@@ -1,0 +1,346 @@
+@import "tailwindcss";
+
+:root {
+  --void: #131212;
+  --cream: #f2efe9;
+  --ivory: #fdf7ec;
+  --champagne: #d5d1cc;
+  --ink: #0b0b0b;
+  --taupe: #2b2724;
+  --bronze: #a1877c;
+  --offset-x: 30px;
+  --offset-bottom: 30px;
+  --header-height: 102px;
+  --ease-luxe: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --offset-x: 20px;
+    --header-height: 80px;
+    --offset-bottom: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --offset-x: 16px;
+    --header-height: 70px;
+    --offset-bottom: 20px;
+  }
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-cream: var(--cream);
+  --color-ivory: var(--ivory);
+  --color-champagne: var(--champagne);
+  --color-ink: var(--ink);
+  --color-taupe: var(--taupe);
+  --color-bronze: var(--bronze);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-ui);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--void);
+  color: var(--cream);
+  min-height: 100%;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--champagne) var(--void);
+}
+
+html.is-loading {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-ui), system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+body.nav-open,
+body.modal-open {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--champagne);
+  color: var(--void);
+}
+
+a,
+button {
+  cursor: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.site-offset {
+  padding-left: var(--offset-x);
+  padding-right: var(--offset-x);
+}
+
+/* SplitText masks clip each line/word so type can rise out of nothing. */
+.reveal-line {
+  will-change: transform;
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.champagne-border {
+  position: relative;
+  isolation: isolate;
+}
+
+.champagne-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--border-rotation, 45deg),
+    transparent 0deg,
+    #d5d1cc4d 80deg,
+    #d5d1cc 140deg,
+    #d5d1cc4d 200deg,
+    transparent 280deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: --border-rotation 0.9s var(--ease-luxe);
+  pointer-events: none;
+  z-index: 2;
+}
+
+@property --border-rotation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 45deg;
+}
+
+.champagne-border:hover::before {
+  --border-rotation: 405deg;
+}
+
+/* Hairline that draws itself from the left on hover. */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.7s var(--ease-luxe);
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--ivory);
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transition:
+    width 0.45s var(--ease-luxe),
+    height 0.45s var(--ease-luxe),
+    margin 0.45s var(--ease-luxe),
+    background 0.45s var(--ease-luxe),
+    opacity 0.35s ease;
+}
+
+.cursor-dot.is-hover {
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--ivory);
+}
+
+.cursor-dot.is-labelled {
+  width: 88px;
+  height: 88px;
+  margin: -44px 0 0 -44px;
+  background: var(--ivory);
+}
+
+.cursor-dot.is-down {
+  transform: scale(0.82);
+}
+
+.cursor-dot.is-hidden {
+  opacity: 0;
+}
+
+.cursor-label {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--void);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cursor-dot.is-labelled .cursor-label {
+  opacity: 1;
+}
+
+.portal-rectangle {
+  clip-path: inset(0% 4% 0% 4% round 2px);
+}
+
+.portal-ovals {
+  clip-path: ellipse(42% 50% at 50% 50%);
+}
+
+.portal-square {
+  clip-path: inset(8% 12% 8% 12% round 4px);
+}
+
+.portal-rings {
+  clip-path: circle(46% at 50% 50%);
+}
+
+.portal-triangles {
+  clip-path: polygon(50% 4%, 96% 92%, 4% 92%);
+}
+
+.portal-trapezoid {
+  clip-path: polygon(18% 8%, 82% 8%, 96% 92%, 4% 92%);
+}
+
+.portal-eight {
+  clip-path: polygon(
+    50% 2%,
+    78% 14%,
+    92% 38%,
+    78% 50%,
+    92% 62%,
+    78% 86%,
+    50% 98%,
+    22% 86%,
+    8% 62%,
+    22% 50%,
+    8% 38%,
+    22% 14%
+  );
+}
+
+.ken-burns {
+  animation: ken 26s var(--ease-luxe) infinite alternate;
+  will-change: transform;
+}
+
+@keyframes ken {
+  from {
+    transform: scale(1.05) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.2) translate3d(-2%, 1.5%, 0);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+
+/* Scroll hint that keeps falling down its own rail. */
+@keyframes cue-fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(320%);
+  }
+}
+
+.scroll-cue {
+  animation: cue-fall 2.4s var(--ease-luxe) infinite;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (hover: none) {
+  body,
+  a,
+  button {
+    cursor: auto;
+  }
+
+  .cursor-dot {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns,
+  .spin-slow,
+  .scroll-cue {
+    animation: none;
+  }
+}
