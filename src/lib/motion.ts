@@ -6,6 +6,7 @@ import { SplitText } from "gsap/SplitText";
 import { Draggable } from "gsap/Draggable";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 import { CustomEase } from "gsap/CustomEase";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 
 let registered = false;
 
@@ -17,6 +18,7 @@ export function registerMotion() {
     Draggable,
     InertiaPlugin,
     CustomEase,
+    DrawSVGPlugin,
   );
 
   CustomEase.create("luxe", "0.76, 0, 0.24, 1");

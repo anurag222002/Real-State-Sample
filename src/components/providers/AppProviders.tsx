@@ -7,14 +7,14 @@ import { Preloader } from "@/components/layout/Preloader";
 import { Header } from "@/components/layout/Header";
 import { NavOverlay } from "@/components/layout/NavOverlay";
 import { Footer } from "@/components/layout/Footer";
-import { ReserveModal } from "@/components/ui/ReserveModal";
+import { EnquiryPanel } from "@/components/ui/EnquiryPanel";
 import { PageTransition } from "@/components/transition/PageTransition";
 
 type UIContextValue = {
   navOpen: boolean;
   setNavOpen: (open: boolean) => void;
-  reserveOpen: boolean;
-  setReserveOpen: (open: boolean) => void;
+  enquiryOpen: boolean;
+  setEnquiryOpen: (open: boolean) => void;
 };
 
 const UIContext = createContext<UIContextValue | null>(null);
@@ -27,11 +27,11 @@ export function useUI() {
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
   const [navOpen, setNavOpen] = useState(false);
-  const [reserveOpen, setReserveOpen] = useState(false);
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
 
   const value = useMemo(
-    () => ({ navOpen, setNavOpen, reserveOpen, setReserveOpen }),
-    [navOpen, reserveOpen],
+    () => ({ navOpen, setNavOpen, enquiryOpen, setEnquiryOpen }),
+    [navOpen, enquiryOpen],
   );
 
   return (
@@ -43,7 +43,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
       <PageTransition>
         <Header />
         <NavOverlay />
-        <ReserveModal />
+        <EnquiryPanel />
         <main>{children}</main>
         <Footer />
       </PageTransition>

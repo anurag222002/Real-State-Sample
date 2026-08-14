@@ -7,18 +7,18 @@ import type { PortalShape } from "@/lib/data";
 import { cn } from "@/lib/cn";
 
 const shapeClass: Record<PortalShape, string> = {
-  rectangle: "portal-rectangle",
-  ovals: "portal-ovals",
-  square: "portal-square",
-  rings: "portal-rings",
-  triangles: "portal-triangles",
-  trapezoid: "portal-trapezoid",
-  eight: "portal-eight",
+  tower: "portal-tower",
+  arch: "portal-arch",
+  plinth: "portal-plinth",
+  aperture: "portal-aperture",
+  chamfer: "portal-chamfer",
+  louvre: "portal-louvre",
+  monolith: "portal-monolith",
 };
 
 /**
- * A shaped portal: masked image, orbiting champagne ring, and a pointer-driven
- * tilt so each card reacts in 3D the way the reference sliders do.
+ * An architectural aperture: the image is masked to a building form, framed by
+ * survey ticks, and tilts in 3D as the pointer moves across it.
  */
 export function PortalFrame({
   src,
@@ -111,25 +111,23 @@ export function PortalFrame({
         ref={innerRef}
         className="relative h-full w-full [transform-style:preserve-3d]"
       >
-        <div className="pointer-events-none absolute inset-[-7%] z-10 opacity-80 mix-blend-screen">
-          <svg viewBox="0 0 92 92" className="spin-slow h-full w-full">
-            <circle
-              opacity="0.55"
-              cx="46"
-              cy="46"
-              r="44"
-              fill="none"
-              stroke={`url(#${id}ring)`}
-              strokeWidth="1.15"
+        {/* Survey ticks that draw in on hover, like marking up an elevation. */}
+        <div className="pointer-events-none absolute inset-[-10px] z-10">
+          {[
+            "left-0 top-0 border-l border-t",
+            "right-0 top-0 border-r border-t",
+            "left-0 bottom-0 border-l border-b",
+            "right-0 bottom-0 border-r border-b",
+          ].map((corner) => (
+            <span
+              key={corner}
+              className={`absolute h-5 w-5 border-champagne/35 opacity-0 transition-opacity duration-700 group-hover:opacity-100 ${corner}`}
             />
-            <defs>
-              <linearGradient id={`${id}ring`} x1="19" y1="92" x2="78" y2="14">
-                <stop stopColor="#D5D1CC" stopOpacity="0" />
-                <stop offset="0.75" stopColor="#D5D1CC" />
-                <stop offset="1" stopColor="#D5D1CC" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-          </svg>
+          ))}
+          <span
+            id={`${id}scan`}
+            className="absolute inset-x-3 top-1/2 h-px origin-left scale-x-0 bg-bronze/70 transition-transform duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-x-100"
+          />
         </div>
 
         <div

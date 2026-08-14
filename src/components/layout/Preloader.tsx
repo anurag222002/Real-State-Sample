@@ -5,7 +5,7 @@ import { gsap, registerMotion, SplitText, ScrollTrigger } from "@/lib/motion";
 import { site } from "@/lib/data";
 
 /**
- * Opening sequence: a champagne progress rule fills while the wordmark letters
+ * Opening sequence: a bronze progress rule fills while the wordmark letters
  * rise, then the curtain splits away and hands control to the page.
  */
 export function Preloader() {
@@ -122,20 +122,22 @@ export function Preloader() {
         ))}
       </div>
 
+      <div className="blueprint-grid-fine pointer-events-none absolute inset-0 opacity-50" />
+
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        <p className="preloader-kicker invisible translate-y-4 text-[10px] uppercase tracking-[0.48em] text-champagne/80">
+        <p className="preloader-kicker invisible translate-y-4 text-[10px] uppercase tracking-[0.48em] text-bronze">
           {site.preloaderSubtitle}
         </p>
-        <h1 className="preloader-title mt-6 font-display text-5xl font-light italic text-ivory sm:text-7xl">
+        <h1 className="preloader-title mt-6 font-display text-3xl uppercase text-ivory sm:text-6xl">
           {site.preloaderText}
         </h1>
         <div className="preloader-meta mt-12 flex w-[min(320px,72vw)] items-center gap-4">
           <span className="preloader-rule relative h-px flex-1 bg-champagne/20">
-            <span className="preloader-rule-fill absolute inset-0 origin-left scale-x-0 bg-champagne" />
+            <span className="preloader-rule-fill absolute inset-0 origin-left scale-x-0 bg-bronze" />
           </span>
           <span
             ref={counterRef}
-            className="w-8 text-right text-[11px] tracking-[0.2em] text-champagne"
+            className="w-8 text-right text-[11px] tracking-[0.2em] text-bronze"
           >
             00
           </span>

@@ -1,27 +1,34 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, Inter } from "next/font/google";
 import { AppProviders } from "@/components/providers/AppProviders";
+import { site } from "@/lib/data";
 import "./globals.css";
 
-const display = Cormorant_Garamond({
+const display = Cinzel({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
   variable: "--font-display",
   display: "swap",
 });
 
-const ui = Outfit({
+const accent = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-accent",
+  display: "swap",
+});
+
+const ui = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
   variable: "--font-ui",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "TIMELESS Luxury Lounges",
-  description:
-    "We craft extraordinary flavours and signature cocktails. A sample recreation of a premium lounge experience.",
+  title: `${site.name} — ${site.tagline}`,
+  description: site.description,
 };
 
 export default function RootLayout({
@@ -31,7 +38,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${display.variable} ${ui.variable} antialiased`}>
+      <body
+        className={`${display.variable} ${accent.variable} ${ui.variable} antialiased`}
+      >
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

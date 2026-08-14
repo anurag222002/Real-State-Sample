@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --void: #131212;
-  --cream: #f2efe9;
-  --ivory: #fdf7ec;
-  --champagne: #d5d1cc;
-  --ink: #0b0b0b;
-  --taupe: #2b2724;
-  --bronze: #a1877c;
+  /* Architectural palette: night concrete, warm stone, bronze detailing. */
+  --void: #121212;
+  --graphite: #1a1918;
+  --cream: #ece7de;
+  --ivory: #fbf7f0;
+  --champagne: #d8d0c2;
+  --ink: #0a0a0a;
+  --taupe: #2a2724;
+  --bronze: #b38b5b;
   --offset-x: 30px;
   --offset-bottom: 30px;
   --header-height: 102px;
@@ -33,6 +35,7 @@
 
 @theme inline {
   --color-void: var(--void);
+  --color-graphite: var(--graphite);
   --color-cream: var(--cream);
   --color-ivory: var(--ivory);
   --color-champagne: var(--champagne);
@@ -40,6 +43,7 @@
   --color-taupe: var(--taupe);
   --color-bronze: var(--bronze);
   --font-display: var(--font-display);
+  --font-accent: var(--font-accent);
   --font-sans: var(--font-ui);
 }
 
@@ -56,7 +60,7 @@ body {
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--champagne) var(--void);
+  scrollbar-color: var(--bronze) var(--void);
 }
 
 html.is-loading {
@@ -77,7 +81,7 @@ body.modal-open {
 }
 
 ::selection {
-  background: var(--champagne);
+  background: var(--bronze);
   color: var(--void);
 }
 
@@ -93,6 +97,11 @@ img {
 
 .font-display {
   font-family: var(--font-display), serif;
+  letter-spacing: 0.02em;
+}
+
+.font-accent {
+  font-family: var(--font-accent), serif;
 }
 
 .site-offset {
@@ -100,7 +109,6 @@ img {
   padding-right: var(--offset-x);
 }
 
-/* SplitText masks clip each line/word so type can rise out of nothing. */
 .reveal-line {
   will-change: transform;
 }
@@ -110,17 +118,32 @@ img {
   position: fixed;
   inset: 0;
   z-index: 80;
-  opacity: 0.06;
+  opacity: 0.05;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.champagne-border {
+/* Drafting grid used behind construction-led sections. */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(216, 208, 194, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(216, 208, 194, 0.07) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.blueprint-grid-fine {
+  background-image:
+    linear-gradient(to right, rgba(216, 208, 194, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(216, 208, 194, 0.05) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.bronze-border {
   position: relative;
   isolation: isolate;
 }
 
-.champagne-border::before {
+.bronze-border::before {
   content: "";
   position: absolute;
   inset: -1px;
@@ -129,9 +152,9 @@ img {
   background: conic-gradient(
     from var(--border-rotation, 45deg),
     transparent 0deg,
-    #d5d1cc4d 80deg,
-    #d5d1cc 140deg,
-    #d5d1cc4d 200deg,
+    rgba(179, 139, 91, 0.35) 80deg,
+    var(--bronze) 140deg,
+    rgba(179, 139, 91, 0.35) 200deg,
     transparent 280deg
   );
   -webkit-mask:
@@ -153,11 +176,10 @@ img {
   initial-value: 45deg;
 }
 
-.champagne-border:hover::before {
+.bronze-border:hover::before {
   --border-rotation: 405deg;
 }
 
-/* Hairline that draws itself from the left on hover. */
 .link-underline {
   position: relative;
 }
@@ -237,49 +259,53 @@ img {
   opacity: 1;
 }
 
-.portal-rectangle {
-  clip-path: inset(0% 4% 0% 4% round 2px);
+/* Architectural apertures used to frame project imagery. */
+.portal-tower {
+  clip-path: inset(0% 12% 0% 12% round 2px);
 }
 
-.portal-ovals {
-  clip-path: ellipse(42% 50% at 50% 50%);
-}
-
-.portal-square {
-  clip-path: inset(8% 12% 8% 12% round 4px);
-}
-
-.portal-rings {
-  clip-path: circle(46% at 50% 50%);
-}
-
-.portal-triangles {
-  clip-path: polygon(50% 4%, 96% 92%, 4% 92%);
-}
-
-.portal-trapezoid {
-  clip-path: polygon(18% 8%, 82% 8%, 96% 92%, 4% 92%);
-}
-
-.portal-eight {
+.portal-arch {
   clip-path: polygon(
-    50% 2%,
-    78% 14%,
-    92% 38%,
-    78% 50%,
-    92% 62%,
-    78% 86%,
-    50% 98%,
-    22% 86%,
-    8% 62%,
-    22% 50%,
-    8% 38%,
-    22% 14%
+    0% 100%,
+    0% 45%,
+    1.7% 33.4%,
+    6.7% 22.5%,
+    14.6% 13.2%,
+    25% 6%,
+    37.1% 1.5%,
+    50% 0%,
+    62.9% 1.5%,
+    75% 6%,
+    85.4% 13.2%,
+    93.3% 22.5%,
+    98.3% 33.4%,
+    100% 45%,
+    100% 100%
   );
 }
 
+.portal-plinth {
+  clip-path: polygon(6% 18%, 94% 6%, 94% 94%, 6% 82%);
+}
+
+.portal-aperture {
+  clip-path: inset(4% 4% 4% 4% round 50% 50% 4px 4px);
+}
+
+.portal-chamfer {
+  clip-path: polygon(0% 12%, 12% 0%, 100% 0%, 100% 88%, 88% 100%, 0% 100%);
+}
+
+.portal-louvre {
+  clip-path: inset(10% 0% 10% 0% round 999px 999px 0 0);
+}
+
+.portal-monolith {
+  clip-path: polygon(14% 0%, 86% 0%, 100% 100%, 0% 100%);
+}
+
 .ken-burns {
-  animation: ken 26s var(--ease-luxe) infinite alternate;
+  animation: ken 28s var(--ease-luxe) infinite alternate;
   will-change: transform;
 }
 
@@ -288,7 +314,7 @@ img {
     transform: scale(1.05) translate3d(0, 0, 0);
   }
   to {
-    transform: scale(1.2) translate3d(-2%, 1.5%, 0);
+    transform: scale(1.18) translate3d(-2%, 1.5%, 0);
   }
 }
 
@@ -299,10 +325,10 @@ img {
 }
 
 .spin-slow {
-  animation: spin-slow 22s linear infinite;
+  animation: spin-slow 26s linear infinite;
 }
 
-/* Scroll hint that keeps falling down its own rail. */
+/* Surveyor's tick sliding down its own rail. */
 @keyframes cue-fall {
   0% {
     transform: translateY(-100%);
@@ -315,6 +341,20 @@ img {
 
 .scroll-cue {
   animation: cue-fall 2.4s var(--ease-luxe) infinite;
+}
+
+/* Slow sweep of light across a facade. */
+@keyframes facade-sweep {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+.facade-sweep {
+  animation: facade-sweep 7s var(--ease-luxe) infinite;
 }
 
 .no-scrollbar {
@@ -340,7 +380,8 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .ken-burns,
   .spin-slow,
-  .scroll-cue {
+  .scroll-cue,
+  .facade-sweep {
     animation: none;
   }
 }

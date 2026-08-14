@@ -12,10 +12,10 @@ type Props = {
 };
 
 /**
- * Pill button with a rotating champagne gradient border and a label that
- * swaps itself on hover for a subtle mechanical feel.
+ * Pill with a rotating bronze gradient edge. The label rolls over itself on
+ * hover, which gives the control a small mechanical tick.
  */
-export function ChampagneButton({
+export function BronzeButton({
   children,
   onClick,
   type = "button",
@@ -29,11 +29,11 @@ export function ChampagneButton({
         onClick={onClick}
         {...(magnetic ? { "data-magnetic": "" } : {})}
         className={cn(
-          "champagne-border group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full px-5 text-[11px] uppercase tracking-[0.28em] text-ivory",
+          "bronze-border group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-full px-6 text-[11px] uppercase tracking-[0.28em] text-ivory",
           className,
         )}
       >
-        <span className="absolute inset-0 origin-bottom scale-y-0 bg-champagne/12 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100" />
+        <span className="absolute inset-0 origin-bottom scale-y-0 bg-bronze/15 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100" />
         <span className="relative block h-4 overflow-hidden">
           <span className="block transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
             {children}

@@ -2,14 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, registerMotion } from "@/lib/motion";
-import { overlayExtras, overlayMenu, socials } from "@/lib/data";
+import { overlayExtras, overlayMenu, site, socials } from "@/lib/data";
 import { useUI } from "@/components/providers/AppProviders";
-import { ChampagneButton } from "@/components/ui/ChampagneButton";
+import { BronzeButton } from "@/components/ui/BronzeButton";
 import { Hoverable } from "@/components/ui/Hoverable";
 import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export function NavOverlay() {
-  const { navOpen, setNavOpen, setReserveOpen } = useUI();
+  const { navOpen, setNavOpen, setEnquiryOpen } = useUI();
   const rootRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -19,7 +19,7 @@ export function NavOverlay() {
     registerMotion();
 
     const ctx = gsap.context(() => {
-      const tl = gsap
+      timelineRef.current = gsap
         .timeline({ paused: true })
         .set(root, { pointerEvents: "auto" })
         .fromTo(
@@ -35,11 +35,10 @@ export function NavOverlay() {
         )
         .fromTo(
           ".nav-item",
-          { autoAlpha: 0, y: 34, rotate: 1.5 },
+          { autoAlpha: 0, y: 34 },
           {
             autoAlpha: 1,
             y: 0,
-            rotate: 0,
             duration: 0.75,
             stagger: 0.035,
             ease: "drape",
@@ -52,8 +51,6 @@ export function NavOverlay() {
           { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.05, ease: "drape" },
           0.45,
         );
-
-      timelineRef.current = tl;
     }, root);
 
     return () => {
@@ -84,24 +81,26 @@ export function NavOverlay() {
   return (
     <div
       ref={rootRef}
-      className="pointer-events-none fixed inset-0 z-40 bg-void/95 backdrop-blur-xl"
+      className="pointer-events-none fixed inset-0 z-40 bg-void/96 backdrop-blur-xl"
       style={{ clipPath: "inset(0% 0% 100% 0%)" }}
     >
-      <div className="site-offset grid h-full grid-cols-1 gap-10 overflow-y-auto pb-10 pt-[calc(var(--header-height)+12px)] no-scrollbar lg:grid-cols-[1.2fr_0.8fr] lg:overflow-hidden">
+      <div className="blueprint-grid pointer-events-none absolute inset-0 opacity-40" />
+
+      <div className="site-offset relative grid h-full grid-cols-1 gap-10 overflow-y-auto pb-10 pt-[calc(var(--header-height)+12px)] no-scrollbar lg:grid-cols-[1.2fr_0.8fr] lg:overflow-hidden">
         <div className="lg:overflow-y-auto lg:no-scrollbar">
           {overlayMenu.map((group) => (
-            <div key={group.name} className="nav-group mb-10">
-              <p className="mb-4 text-[11px] uppercase tracking-[0.32em] text-champagne">
+            <div key={group.name} className="nav-group mb-12">
+              <p className="mb-5 text-[11px] uppercase tracking-[0.32em] text-bronze">
                 {group.name}
               </p>
-              <ul className="flex flex-col gap-1.5">
+              <ul className="flex flex-col gap-2">
                 {group.children.map((item) => (
                   <li key={item.name} className="nav-item overflow-hidden">
                     <Hoverable>
                       <TransitionLink
                         href={item.href}
                         onClick={() => setNavOpen(false)}
-                        className="inline-block font-display text-3xl font-light italic text-ivory transition-colors duration-500 hover:text-champagne sm:text-4xl"
+                        className="inline-block font-display text-2xl uppercase text-ivory transition-colors duration-500 hover:text-bronze sm:text-4xl"
                       >
                         {item.name}
                       </TransitionLink>
@@ -136,24 +135,18 @@ export function NavOverlay() {
           </ul>
 
           <div className="nav-aside flex flex-col gap-6">
-            <Hoverable>
-              <TransitionLink
-                href="/locations"
-                onClick={() => setNavOpen(false)}
-                className="font-display text-2xl italic text-ivory"
-              >
-                Club Card
-              </TransitionLink>
-            </Hoverable>
-            <ChampagneButton
+            <p className="max-w-xs font-accent text-xl italic text-cream/60">
+              {site.legalName}
+            </p>
+            <BronzeButton
               magnetic
               onClick={() => {
                 setNavOpen(false);
-                setReserveOpen(true);
+                setEnquiryOpen(true);
               }}
             >
-              Reserve
-            </ChampagneButton>
+              Enquire
+            </BronzeButton>
             <div className="flex flex-wrap gap-5">
               {socials.map((s) => (
                 <Hoverable key={s.name}>
@@ -161,7 +154,7 @@ export function NavOverlay() {
                     href={s.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="link-underline text-[11px] uppercase tracking-[0.24em] text-champagne"
+                    className="link-underline text-[11px] uppercase tracking-[0.24em] text-bronze"
                   >
                     {s.name}
                   </a>

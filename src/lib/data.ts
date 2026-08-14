@@ -1,346 +1,427 @@
 export const site = {
-  name: "TIMELESS",
-  tagline: "Luxury Lounges",
-  description: "Official website of the TIMELESS Luxury Lounges chain.",
-  heroTitle: "Timeless",
-  heroHeading: "Art of taste",
-  heroText: "We craft extraordinary flavours and signature cocktails",
-  introTexts: ["beautiful place", "beautiful people"],
-  preloaderSubtitle: "timeless LUXURY LOUNGES",
-  preloaderText: "welcome home",
-  ageNote:
-    "18+. Kindly bring your original proof of age with you. See you at TIMELESS.",
+  name: "MERIDIAN",
+  legalName: "Meridian Urban Real Estate Collection",
+  tagline: "Urban Real Estate Collection",
+  description:
+    "A design-led developer of residences, workplaces and mixed-use landmarks. Seven decades of building with quality before profit.",
+  heroTitle: "Meridian",
+  heroHeading: "The legacy beyond compare",
+  heroText:
+    "Residences, workplaces and landmarks built to outlive the era that made them.",
+  introTexts: ["land with intent", "build with restraint", "hold for decades"],
+  preloaderSubtitle: "meridian URBAN REAL ESTATE",
+  preloaderText: "we build legacies",
+  established: "Est. 1954",
+  reraNote:
+    "MahaRERA registered. Renders are artistic impressions and do not constitute a legal offering.",
 };
 
 export const navLinks = [
-  { label: "Locations", href: "/locations" },
-  { label: "Menu", href: "/#menu" },
-  { label: "News", href: "/#ladder" },
+  { label: "Collection", href: "/collection" },
+  { label: "Legacy", href: "/#legacy" },
+  { label: "Principles", href: "/#principles" },
 ];
 
 export const overlayMenu = [
   {
-    name: "Locations",
+    name: "The Collection",
     children: [
-      { name: "All locations", href: "/locations" },
-      { name: "Moscow-city", href: "/locations" },
-      { name: "Yakimanka", href: "/locations" },
-      { name: "Novy Arbat", href: "/locations" },
-      { name: "Okhotny Ryad", href: "/locations" },
-      { name: "Mayakovskaya", href: "/locations" },
-      { name: "Chistye Prudy", href: "/locations" },
+      { name: "All developments", href: "/collection" },
+      { name: "Aurum Park", href: "/collection" },
+      { name: "Meridian One", href: "/collection" },
+      { name: "Stone Court", href: "/collection" },
+      { name: "Sky Terraces", href: "/collection" },
     ],
   },
   {
-    name: "Menu",
+    name: "The Company",
     children: [
-      { name: "Flavours", href: "/#menu" },
-      { name: "Bar", href: "/#menu" },
-      { name: "Snacks", href: "/#menu" },
-    ],
-  },
-  {
-    name: "About us",
-    children: [
-      { name: "About timeless", href: "/#ladder" },
-      { name: "News", href: "/#ladder" },
+      { name: "Our legacy", href: "/#legacy" },
+      { name: "Living by principles", href: "/#principles" },
+      { name: "Design philosophy", href: "/#philosophy" },
+      { name: "How we build", href: "/#process" },
     ],
   },
 ];
 
 export const overlayExtras = [
-  { name: "Catering", href: "/locations" },
-  { name: "Franchise", href: "/locations" },
-  { name: "Consulting", href: "/locations" },
-  { name: "Careers", href: "/locations" },
-  { name: "Shop", href: "/locations", soon: true },
-  { name: "Contacts", href: "/locations" },
+  { name: "Media & insights", href: "/collection" },
+  { name: "Channel partners", href: "/collection" },
+  { name: "Careers", href: "/collection" },
+  { name: "NRI desk", href: "/collection", soon: true },
+  { name: "Contact", href: "/collection" },
 ];
 
 export type PortalShape =
-  | "rectangle"
-  | "ovals"
-  | "square"
-  | "rings"
-  | "triangles"
-  | "trapezoid"
-  | "eight";
+  | "tower"
+  | "arch"
+  | "plinth"
+  | "aperture"
+  | "chamfer"
+  | "louvre"
+  | "monolith";
 
-export type Location = {
+export type ProjectStatus =
+  | "New launch"
+  | "Under construction"
+  | "Nearing possession"
+  | "Delivered";
+
+export type Project = {
   id: string;
-  codeName: string;
+  code: string;
   name: string;
+  typology: string;
   city: string;
   address: string;
-  metro: string;
-  phone: string;
-  telegram: string;
-  hours: string;
+  configuration: string;
+  scale: string;
+  status: ProjectStatus;
+  rera: string;
   image: string;
   portrait: string;
   shape: PortalShape;
-  isNew?: boolean;
+  flagship?: boolean;
 };
 
-export const locations: Location[] = [
+export const projects: Project[] = [
   {
-    id: "moscow-city",
-    codeName: "TIMELESS 6",
-    name: "Moscow-city",
-    city: "Moscow",
-    address: "Neva Towers, 2nd floor",
-    metro: "m. Moscow-City",
-    phone: "+7 (916) 850-90-02",
-    telegram: "@timeless_city",
-    hours: "Mon — Sun: 12:00 — 03:00",
+    id: "aurum-park",
+    code: "01",
+    name: "Aurum Park",
+    typology: "High-rise residences",
+    city: "Mumbai",
+    address: "Off Link Road, Andheri West",
+    configuration: "3 & 4 BHK · 1,480 – 2,340 sq ft",
+    scale: "2 towers · 41 floors",
+    status: "Under construction",
+    rera: "P51800054321",
     image:
-      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80",
     portrait:
-      "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=1200&q=80",
-    shape: "rectangle",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+    shape: "tower",
+    flagship: true,
   },
   {
-    id: "yakimanka",
-    codeName: "TIMELESS 54",
-    name: "Yakimanka",
-    city: "Moscow",
-    address: "Bolshaya Yakimanka, 22",
-    metro: "m. Polyanka",
-    phone: "+7 (980) 213-16-27",
-    telegram: "@timeless_yakimanka",
-    hours: "Mon — Sun: 12:00 — 03:00",
+    id: "meridian-one",
+    code: "02",
+    name: "Meridian One",
+    typology: "Grade-A workplace",
+    city: "Mumbai",
+    address: "G Block, Bandra Kurla Complex",
+    configuration: "Floor plates of 21,000 sq ft",
+    scale: "1 tower · 28 floors",
+    status: "Nearing possession",
+    rera: "P51800061204",
     image:
-      "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1800&q=80",
     portrait:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
-    shape: "ovals",
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80",
+    shape: "monolith",
   },
   {
-    id: "novy-arbat",
-    codeName: "TIMELESS 45",
-    name: "Novy Arbat",
-    city: "Moscow",
-    address: "Novy Arbat, 28",
-    metro: "m. Smolenskaya",
-    phone: "+7 (985) 502-07-77",
-    telegram: "@timeless_arbat",
-    hours: "Mon — Sun: 12:00 — 03:00",
+    id: "stone-court",
+    code: "03",
+    name: "Stone Court",
+    typology: "Low-rise villas",
+    city: "Alibaug",
+    address: "Awas Beach Road",
+    configuration: "4 BHK villas · 4,100 sq ft",
+    scale: "18 villas · 6 acres",
+    status: "New launch",
+    rera: "P52000048117",
     image:
-      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=80",
     portrait:
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80",
-    shape: "square",
+      "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1200&q=80",
+    shape: "plinth",
   },
   {
-    id: "okhotny-ryad",
-    codeName: "TIMELESS 3",
-    name: "Okhotny Ryad",
-    city: "Moscow",
-    address: "Nikitsky per, 7, building 1",
-    metro: "m. Okhotny Ryad",
-    phone: "+7 (916) 410-50-54",
-    telegram: "@timeless_okhotny_ryad",
-    hours: "Mon — Sun: 12:00 — 03:00",
+    id: "sky-terraces",
+    code: "04",
+    name: "Sky Terraces",
+    typology: "Sky residences",
+    city: "Mumbai",
+    address: "Dr. Annie Besant Road, Worli",
+    configuration: "4 & 5 BHK · 3,200 – 5,600 sq ft",
+    scale: "1 tower · 52 floors",
+    status: "Delivered",
+    rera: "P51900032890",
     image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1800&q=80",
     portrait:
-      "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
-    shape: "rings",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1200&q=80",
+    shape: "aperture",
   },
   {
-    id: "mayakovskaya",
-    codeName: "TIMELESS 2",
-    name: "Mayakovskaya",
-    city: "Moscow",
-    address: "Blagoveshchensky per, 1a",
-    metro: "m. Mayakovskaya",
-    phone: "+7 (915) 151-35-34",
-    telegram: "@timeless_mayakovskaya",
-    hours: "Mon — Sun: 12:00 — 03:00",
+    id: "the-civic",
+    code: "05",
+    name: "The Civic",
+    typology: "Mixed-use precinct",
+    city: "Pune",
+    address: "Mundhwa Riverfront",
+    configuration: "Retail, offices & serviced homes",
+    scale: "3 blocks · 11 acres",
+    status: "Under construction",
+    rera: "P52100055602",
     image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1800&q=80",
     portrait:
-      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80",
-    shape: "triangles",
+      "https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?auto=format&fit=crop&w=1200&q=80",
+    shape: "chamfer",
   },
   {
-    id: "chistye-prudy",
-    codeName: "TIMELESS 1",
-    name: "Chistye Prudy",
-    city: "Moscow",
-    address: "Milyutinsky per, 15",
-    metro: "m. Chistye Prudy",
-    phone: "+7 (985) 816-84-41",
-    telegram: "@timeless_chistye_prudy",
-    hours: "Mon — Sun: 12:00 — 03:00",
+    id: "greenfield-enclave",
+    code: "06",
+    name: "Greenfield Enclave",
+    typology: "Plotted development",
+    city: "Nashik",
+    address: "Gangapur Road Extension",
+    configuration: "Plots of 2,400 – 6,000 sq ft",
+    scale: "184 plots · 24 acres",
+    status: "New launch",
+    rera: "P52200059431",
     image:
-      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1800&q=80",
     portrait:
-      "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=1200&q=80",
-    shape: "trapezoid",
-  },
-  {
-    id: "dubai",
-    codeName: "TIMELESS DUBAI",
-    name: "TIMELESS DUBAI",
-    city: "Dubai",
-    address: "Al Habtoor City, Meera Tower",
-    metro: "Al Habtoor City",
-    phone: "+971 50 204 9987",
-    telegram: "@timeless_dubai",
-    hours: "Mon — Sun: 12:00 — 03:00",
-    image:
-      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80",
-    portrait:
-      "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80",
-    shape: "eight",
-    isNew: true,
+      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1200&q=80",
+    shape: "louvre",
   },
 ];
 
-export type Product = {
-  name: string;
-  description: string;
-  price?: string;
-  showPrice?: boolean;
-  image: string;
-};
-
-export type MenuCategory = {
+export type Principle = {
   slug: string;
+  index: string;
   name: string;
-  specialTitle: string;
-  specialDescription: string;
-  btnLabel: string;
+  statement: string;
+  description: string;
+  proof: string;
   image: string;
-  menuImage: string;
-  products: Product[];
+  detailImage: string;
+  points: { name: string; description: string }[];
 };
 
-export const menuCategories: MenuCategory[] = [
+export const principles: Principle[] = [
   {
-    slug: "flavours",
-    name: "Flavours",
-    specialTitle: "Hookah special",
-    specialDescription: "Mixology as art, hookahs as masterpieces.",
-    btnLabel: "Flavours menu",
+    slug: "trust",
+    index: "01",
+    name: "Trust",
+    statement: "Quality before profit, trust before everything",
+    description:
+      "Every allotment is backed by clear title, escrowed collections and a handover date we publish before we sell.",
+    proof: "Zero litigated titles across 42 developments",
     image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80",
-    menuImage:
-      "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=1600&q=80",
-    products: [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80",
+    detailImage:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+    points: [
       {
-        name: "Summer bazaar",
-        description: "The flavor of iced green tea with lemon and field herbs.",
-        image:
-          "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=80",
+        name: "Clear title",
+        description:
+          "Independent legal audit published in every allotment kit.",
       },
       {
-        name: "MONOCHROME",
-        description:
-          "Handcrafted chrome plated metal. Refreshing aroma of blueberries, flowers, root beer and bourbon.",
-        image:
-          "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80",
+        name: "Escrowed funds",
+        description: "Collections ring-fenced per project, audited quarterly.",
       },
       {
-        name: "BOO",
-        description:
-          "A toy with a soft texture and a bold character. Aroma of red ripe berries, strawberry jam and lemon liqueur.",
-        price: "15 000 ₽",
-        showPrice: true,
-        image:
-          "https://images.unsplash.com/photo-1481391319762-47dff72990d5?auto=format&fit=crop&w=900&q=80",
+        name: "Published dates",
+        description: "Committed handover, tracked publicly through delivery.",
       },
     ],
   },
   {
-    slug: "bar",
-    name: "Bar",
-    specialTitle: "Bar special",
-    specialDescription: "Stronger drinks for stronger bonds.",
-    btnLabel: "Bar menu",
+    slug: "quality",
+    index: "02",
+    name: "Quality",
+    statement: "Built once, built to hold its line",
+    description:
+      "Structural design to IS-1893 seismic standards, imported formwork for flatness, and a 200-point checklist before any key changes hands.",
+    proof: "200-point handover checklist per home",
     image:
-      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80",
-    menuImage:
-      "https://images.unsplash.com/photo-1536935338788-846bb9981813?auto=format&fit=crop&w=1600&q=80",
-    products: [
+      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80",
+    detailImage:
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80",
+    points: [
       {
-        name: "BEET ME",
-        description:
-          "Gastronomic purple sour with tonka bean infused rum, pomegranate, blackcurrant and beetroot juice.",
-        price: "135 ml / 1 000 ₽",
-        showPrice: true,
-        image:
-          "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=80",
+        name: "Aluminium formwork",
+        description: "Monolithic pours for true walls and tighter tolerances.",
       },
       {
-        name: "CRYSTAL",
-        description:
-          "Gimlet with Norman Calvados, cider syrup with pear and pandan. Served with cider jelly.",
-        price: "100 ml / 1 500 ₽",
-        showPrice: true,
-        image:
-          "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=80",
+        name: "Facade testing",
+        description: "Mock-ups water-tested before the first panel is fixed.",
       },
       {
-        name: "LUST CHERRY",
-        description:
-          "Our hit cocktail with a bright cherry-almond aroma, shades of palo santo and vanilla.",
-        price: "100 ml / 1 800 ₽",
-        showPrice: true,
-        image:
-          "https://images.unsplash.com/photo-1609951651556-5334e2706168?auto=format&fit=crop&w=900&q=80",
+        name: "Snag-free keys",
+        description: "Third-party inspection signs off ahead of possession.",
       },
     ],
   },
   {
-    slug: "snacks",
-    name: "Snacks",
-    specialTitle: "Gastro special",
-    specialDescription: "Timeless classics in taste, elegance in presentation.",
-    btnLabel: "Snack menu",
+    slug: "transparency",
+    index: "03",
+    name: "Transparency",
+    statement: "The drawing you see is the building you get",
+    description:
+      "Carpet areas, loading, specifications and construction progress are shared monthly — in writing, with photographs, without prompting.",
+    proof: "Monthly progress reports to every buyer",
     image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80",
-    menuImage:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80",
-    products: [
+      "https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=1800&q=80",
+    detailImage:
+      "https://images.unsplash.com/photo-1626178793926-22b28830aa30?auto=format&fit=crop&w=1600&q=80",
+    points: [
       {
-        name: "LASAGNA",
-        description: "with turkey, cheese and basil.",
-        image:
-          "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=900&q=80",
+        name: "Carpet-area first",
+        description: "Pricing quoted on RERA carpet, never on inflated saleable.",
       },
       {
-        name: "BURRATA WITH TOMATOES",
-        description: "And greek dressing.",
-        image:
-          "https://images.unsplash.com/photo-1608897013039-887f21dba900?auto=format&fit=crop&w=900&q=80",
+        name: "Live progress",
+        description: "Slab-by-slab updates with site photography each month.",
+      },
+      {
+        name: "Fixed specification",
+        description: "Material schedule locked at booking, changes only upward.",
+      },
+    ],
+  },
+  {
+    slug: "innovation",
+    index: "04",
+    name: "Innovation",
+    statement: "IGBC-aligned by design, not by retrofit",
+    description:
+      "Orientation studies, low-E glazing, rainwater harvesting and 30% recycled content are decided at concept stage, where they still cost nothing.",
+    proof: "IGBC Gold targeted across the collection",
+    image:
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1800&q=80",
+    detailImage:
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
+    points: [
+      {
+        name: "Passive first",
+        description: "Solar studies shape massing before mechanical cooling.",
+      },
+      {
+        name: "Water positive",
+        description: "Harvesting and recycling sized for the full occupancy.",
+      },
+      {
+        name: "Low-carbon mix",
+        description: "GGBS concrete and regional stone reduce embodied carbon.",
       },
     ],
   },
 ];
 
-export const ladderSlides = [
+export const riseSlides = [
   {
-    text: "Creating refined and impeccable bars…",
-    link: { name: "About us", href: "/locations" },
+    text: "For seventy years we have built on the same oath…",
+    link: { name: "Our legacy", href: "/#legacy" },
   },
   {
-    text: "…an experience beyond compare",
-    link: { name: "Club card", href: "/locations" },
+    text: "…quality before profit, trust before everything",
+    link: { name: "Our principles", href: "/#principles" },
   },
   {
-    text: "TIMELESS is a celebration of aesthetics, emotions, and desire…",
-    link: { name: "Locations", href: "/locations" },
+    text: "A building is a promise poured in concrete…",
+    link: { name: "The collection", href: "/collection" },
   },
   {
-    text: "…the irresistible desire to return again and again",
+    text: "…and we intend to keep it for generations",
     link: null,
   },
 ];
 
+export type Phase = {
+  code: string;
+  name: string;
+  duration: string;
+  description: string;
+};
+
+export const phases: Phase[] = [
+  {
+    code: "01",
+    name: "Land & diligence",
+    duration: "4 – 7 months",
+    description:
+      "Title search, soil investigation and feasibility. If the land cannot be clean, we walk away.",
+  },
+  {
+    code: "02",
+    name: "Design & approvals",
+    duration: "8 – 12 months",
+    description:
+      "Architecture, structure and services resolved together, then taken through statutory approvals.",
+  },
+  {
+    code: "03",
+    name: "Foundation & structure",
+    duration: "14 – 22 months",
+    description:
+      "Piling, raft and monolithic slab cycles at a published rate of one floor every seven days.",
+  },
+  {
+    code: "04",
+    name: "Facade & services",
+    duration: "10 – 14 months",
+    description:
+      "Glazing, plumbing, electrical and HVAC installed against tested mock-ups.",
+  },
+  {
+    code: "05",
+    name: "Finishes & handover",
+    duration: "6 – 9 months",
+    description:
+      "Fit-out, third-party snagging and a 200-point sign-off before keys are released.",
+  },
+];
+
+export const stats = [
+  { value: 71, suffix: "", label: "Years of building" },
+  { value: 42, suffix: "", label: "Developments delivered" },
+  { value: 6.5, suffix: "M", label: "Sq ft completed" },
+  { value: 12, suffix: "K", label: "Families housed" },
+];
+
+export const partners = [
+  {
+    name: "Goonmeet Chauhan",
+    role: "Principal Architect",
+    quote:
+      "We were asked to sculpt Meridian as a contemporary residential landmark — an address where design elegance is interwoven with functional planning.",
+    image:
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    name: "Bobby Mukherjee",
+    role: "Interior Design",
+    quote:
+      "The clubhouse and tower lobbies are conceived for refined luxury and a strong spatial identity that ages slowly and gracefully.",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    name: "Rohan Deshpande",
+    role: "Structural Engineering",
+    quote:
+      "Seismic design, wind tunnel validation and a seven-day slab cycle — the engineering here is held to infrastructure standards, not housing ones.",
+    image:
+      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
+  },
+];
+
 export const socials = [
-  { name: "instagram", href: "https://www.instagram.com/timeless_moscow" },
+  { name: "Instagram", href: "https://www.instagram.com" },
+  { name: "LinkedIn", href: "https://www.linkedin.com" },
   { name: "YouTube", href: "https://www.youtube.com" },
-  { name: "Telegram", href: "https://t.me/timeless_moscow" },
+];
+
+export const budgets = [
+  "₹2 – 4 Cr",
+  "₹4 – 7 Cr",
+  "₹7 – 12 Cr",
+  "₹12 Cr and above",
+  "Commercial enquiry",
 ];

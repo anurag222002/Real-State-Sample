@@ -2,14 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, registerMotion, ScrollTrigger } from "@/lib/motion";
-import { navLinks } from "@/lib/data";
+import { navLinks, site } from "@/lib/data";
 import { useUI } from "@/components/providers/AppProviders";
-import { ChampagneButton } from "@/components/ui/ChampagneButton";
+import { BronzeButton } from "@/components/ui/BronzeButton";
 import { Hoverable } from "@/components/ui/Hoverable";
 import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export function Header() {
-  const { navOpen, setNavOpen, setReserveOpen } = useUI();
+  const { navOpen, setNavOpen, setEnquiryOpen } = useUI();
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export function Header() {
         ease: "power3.out",
       });
 
-      // Chrome retreats when diving down the page and returns on the way up.
+      // Chrome retreats while descending the page and returns on the way up.
       ScrollTrigger.create({
         start: 200,
         end: "max",
@@ -40,9 +40,12 @@ export function Header() {
         onToggle: (self) => {
           gsap.to(header, {
             backgroundColor: self.isActive
-              ? "rgba(19,18,18,0.72)"
-              : "rgba(19,18,18,0)",
+              ? "rgba(18,18,18,0.74)"
+              : "rgba(18,18,18,0)",
             backdropFilter: self.isActive ? "blur(14px)" : "blur(0px)",
+            borderBottomColor: self.isActive
+              ? "rgba(216,208,194,0.12)"
+              : "rgba(216,208,194,0)",
             duration: 0.6,
             ease: "luxe",
           });
@@ -56,7 +59,9 @@ export function Header() {
   useEffect(() => {
     const header = headerRef.current;
     if (!header) return;
-    const play = () => gsap.to(header, { yPercent: 0, autoAlpha: 1, duration: 1.1, ease: "luxe" });
+    const play = () =>
+      gsap.to(header, { yPercent: 0, autoAlpha: 1, duration: 1.1, ease: "luxe" });
+
     if (document.body.classList.contains("is-ready")) {
       play();
       return;
@@ -88,29 +93,30 @@ export function Header() {
         <Hoverable>
           <TransitionLink
             href="/"
-            aria-label="TIMELESS home"
-            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            aria-label={`${site.name} home`}
+            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
           >
-            <span className="block font-display text-[15px] font-medium tracking-[0.48em] text-champagne transition-colors duration-500 hover:text-ivory sm:text-[17px]">
-              TIMELESS
+            <span className="block font-display text-[15px] tracking-[0.46em] text-ivory transition-colors duration-500 hover:text-bronze sm:text-[17px]">
+              {site.name}
+            </span>
+            <span className="mt-1 hidden text-[8px] uppercase tracking-[0.3em] text-cream/40 sm:block">
+              {site.established}
             </span>
           </TransitionLink>
         </Hoverable>
 
         <div className="pointer-events-auto ml-auto flex items-center gap-3 sm:gap-5">
           <Hoverable>
-            <button className="hidden text-[12px] uppercase tracking-[0.22em] text-cream/90 md:inline">
-              EN
-            </button>
+            <a
+              href="tel:+912200000000"
+              className="hidden text-[12px] uppercase tracking-[0.22em] text-cream/90 md:inline"
+            >
+              +91 22 0000 0000
+            </a>
           </Hoverable>
-          <Hoverable>
-            <button className="hidden text-[12px] uppercase tracking-[0.22em] text-cream/90 md:inline">
-              Moscow
-            </button>
-          </Hoverable>
-          <ChampagneButton magnetic onClick={() => setReserveOpen(true)}>
-            Reserve
-          </ChampagneButton>
+          <BronzeButton magnetic onClick={() => setEnquiryOpen(true)}>
+            Enquire
+          </BronzeButton>
           <Hoverable>
             <button
               aria-label={navOpen ? "Close menu" : "Open menu"}

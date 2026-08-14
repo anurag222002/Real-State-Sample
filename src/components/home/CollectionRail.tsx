@@ -2,20 +2,20 @@
 
 import { useEffect, useRef } from "react";
 import { Draggable, gsap, registerMotion } from "@/lib/motion";
-import { locations } from "@/lib/data";
+import { projects } from "@/lib/data";
 import { PortalFrame } from "@/components/ui/PortalFrame";
-import { ChampagneButton } from "@/components/ui/ChampagneButton";
+import { BronzeButton } from "@/components/ui/BronzeButton";
 import { Hoverable } from "@/components/ui/Hoverable";
 import { RevealText } from "@/components/motion/RevealText";
 import { TransitionLink } from "@/components/transition/TransitionLink";
 import { useUI } from "@/components/providers/AppProviders";
 
 /**
- * Draggable locations slider with inertia. Cards skew toward the direction of
- * travel, which is what sells the weight of the drag on the reference site.
+ * Draggable collection slider with inertia. Cards lean into the direction of
+ * travel so the drag carries some weight.
  */
-export function LocationsRail() {
-  const { setReserveOpen } = useUI();
+export function CollectionRail() {
+  const { setEnquiryOpen } = useUI();
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLSpanElement>(null);
@@ -45,8 +45,7 @@ export function LocationsRail() {
       let lastX = 0;
 
       const update = function (this: Draggable) {
-        const bounds = getBounds();
-        const range = Math.abs(bounds.minX) || 1;
+        const range = Math.abs(getBounds().minX) || 1;
         const progress = gsap.utils.clamp(0, 1, Math.abs(this.x) / range);
         if (progressRef.current) {
           progressRef.current.style.transform = `scaleX(${progress})`;
@@ -54,8 +53,8 @@ export function LocationsRail() {
 
         const velocity = this.x - lastX;
         lastX = this.x;
-        skewTo(gsap.utils.clamp(-9, 9, -velocity * 0.22));
-        scaleTo(1 - Math.min(Math.abs(velocity) * 0.004, 0.06));
+        skewTo(gsap.utils.clamp(-8, 8, -velocity * 0.2));
+        scaleTo(1 - Math.min(Math.abs(velocity) * 0.004, 0.055));
       };
 
       const settle = () => {
@@ -77,10 +76,10 @@ export function LocationsRail() {
       });
 
       gsap.from(cards, {
-        yPercent: 14,
+        yPercent: 12,
         autoAlpha: 0,
         duration: 1.1,
-        stagger: 0.09,
+        stagger: 0.08,
         ease: "drape",
         scrollTrigger: { trigger: container, start: "top 82%", once: true },
       });
@@ -98,27 +97,25 @@ export function LocationsRail() {
   }, []);
 
   return (
-    <section className="overflow-hidden bg-void pb-20 pt-24">
-      <div className="site-offset mb-12 flex items-end justify-between gap-6">
+    <section id="collection" className="overflow-hidden bg-void pb-20 pt-28">
+      <div className="site-offset mb-14 flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.32em] text-champagne">
-            Locations
+          <p className="text-[11px] uppercase tracking-[0.32em] text-bronze">
+            The collection
           </p>
           <RevealText
             as="h2"
-            type="chars"
-            stagger={0.03}
-            className="mt-3 font-display text-4xl italic text-ivory sm:text-6xl"
+            className="mt-4 font-display text-3xl uppercase leading-[1.1] text-ivory sm:text-5xl"
           >
-            Portals of taste
+            Addresses in the making
           </RevealText>
         </div>
         <Hoverable>
           <TransitionLink
-            href="/locations"
+            href="/collection"
             className="link-underline shrink-0 text-[11px] uppercase tracking-[0.28em] text-cream/70"
           >
-            View all
+            All developments
           </TransitionLink>
         </Hoverable>
       </div>
@@ -129,36 +126,46 @@ export function LocationsRail() {
           data-cursor-label="Drag"
           className="flex cursor-none gap-6 px-[var(--offset-x)] pb-8 will-change-transform"
         >
-          {locations.map((loc) => (
+          {projects.map((project) => (
             <article
-              key={loc.id}
-              className="rail-card group w-[76vw] shrink-0 sm:w-[340px]"
+              key={project.id}
+              className="rail-card group w-[78vw] shrink-0 sm:w-[360px]"
             >
               <Hoverable>
-                <TransitionLink href="/locations" className="block">
+                <TransitionLink href="/collection" className="block">
                   <PortalFrame
-                    src={loc.portrait}
-                    alt={loc.name}
-                    shape={loc.shape}
+                    src={project.portrait}
+                    alt={project.name}
+                    shape={project.shape}
                     className="aspect-[3/4] w-full"
-                    sizes="340px"
+                    sizes="360px"
                   />
                 </TransitionLink>
               </Hoverable>
-              <p className="mt-5 text-[11px] uppercase tracking-[0.28em] text-champagne">
-                {loc.codeName}
-                {loc.isNew ? <span className="ml-3 text-ivory">New</span> : null}
-              </p>
-              <h3 className="mt-1 font-display text-3xl italic text-ivory">
-                {loc.name}
+
+              <div className="mt-5 flex items-center gap-3">
+                <span className="text-[11px] tracking-[0.24em] text-bronze">
+                  {project.code}
+                </span>
+                <span className="h-px flex-1 bg-champagne/15" />
+                <span className="text-[10px] uppercase tracking-[0.22em] text-cream/50">
+                  {project.status}
+                </span>
+              </div>
+              <h3 className="mt-3 font-display text-2xl uppercase text-ivory">
+                {project.name}
               </h3>
-              <p className="mt-2 text-sm text-cream/55">
-                {loc.address} ({loc.metro})
+              <p className="mt-2 font-accent text-lg italic text-cream/60">
+                {project.typology}
               </p>
-              <div className="mt-4">
-                <ChampagneButton onClick={() => setReserveOpen(true)}>
-                  Reserve
-                </ChampagneButton>
+              <p className="mt-3 text-sm text-cream/50">
+                {project.address}, {project.city}
+              </p>
+              <p className="mt-1 text-xs text-cream/40">{project.scale}</p>
+              <div className="mt-5">
+                <BronzeButton onClick={() => setEnquiryOpen(true)}>
+                  Enquire
+                </BronzeButton>
               </div>
             </article>
           ))}
@@ -168,7 +175,7 @@ export function LocationsRail() {
           <span className="relative h-px flex-1 bg-champagne/15">
             <span
               ref={progressRef}
-              className="absolute inset-0 origin-left scale-x-0 bg-champagne"
+              className="absolute inset-0 origin-left scale-x-0 bg-bronze"
             />
           </span>
           <span className="text-[10px] uppercase tracking-[0.3em] text-cream/40">
