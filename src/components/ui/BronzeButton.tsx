@@ -8,6 +8,10 @@ type Props = {
   onClick?: () => void;
   type?: "button" | "submit";
   className?: string;
+  /**
+   * Accepted for call-site compatibility only. Buttons no longer take a
+   * magnetic pull — the hover response is entirely in place.
+   */
   magnetic?: boolean;
 };
 
@@ -20,16 +24,14 @@ export function BronzeButton({
   onClick,
   type = "button",
   className,
-  magnetic,
 }: Props) {
   return (
     <Hoverable>
       <button
         type={type}
         onClick={onClick}
-        {...(magnetic ? { "data-magnetic": "" } : {})}
         className={cn(
-          "bronze-border group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-full px-6 text-[11px] uppercase tracking-[0.28em] text-ivory",
+          "bronze-border group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-full px-6 text-[11px] uppercase tracking-[0.28em] text-ivory transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] active:scale-[0.97]",
           className,
         )}
       >

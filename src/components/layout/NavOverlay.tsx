@@ -139,7 +139,6 @@ export function NavOverlay() {
               {site.legalName}
             </p>
             <BronzeButton
-              magnetic
               onClick={() => {
                 setNavOpen(false);
                 setEnquiryOpen(true);

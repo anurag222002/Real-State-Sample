@@ -108,7 +108,7 @@ export function Footer() {
                 By submitting, you agree to be contacted about {site.name}
                 developments.
               </p>
-              <BronzeButton magnetic type="submit">
+              <BronzeButton type="submit">
                 Send message
               </BronzeButton>
             </>

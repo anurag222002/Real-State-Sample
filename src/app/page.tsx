@@ -4,7 +4,9 @@ import { Legacy } from "@/components/home/Legacy";
 import { Principles } from "@/components/home/Principles";
 import { Rise } from "@/components/home/Rise";
 import { Construction } from "@/components/home/Construction";
+import { Elevation } from "@/components/home/Elevation";
 import { CollectionRail } from "@/components/home/CollectionRail";
+import { Masterplan } from "@/components/home/Masterplan";
 import { Partners } from "@/components/home/Partners";
 
 export default function HomePage() {
@@ -16,7 +18,9 @@ export default function HomePage() {
       <Principles />
       <Rise />
       <Construction />
+      <Elevation />
       <CollectionRail />
+      <Masterplan />
       <Partners />
     </>
   );

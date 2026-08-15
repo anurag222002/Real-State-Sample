@@ -114,7 +114,7 @@ export function Header() {
               +91 22 0000 0000
             </a>
           </Hoverable>
-          <BronzeButton magnetic onClick={() => setEnquiryOpen(true)}>
+          <BronzeButton onClick={() => setEnquiryOpen(true)}>
             Enquire
           </BronzeButton>
           <Hoverable>
